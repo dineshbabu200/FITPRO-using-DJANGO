@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Fitness</title>
+    {% load static %}
+    <style>
+           body{
+            background-image: url("{% static 'Fitness Wallpaper.jpg' %}");
+            background-repeat: no-repeat;
+               background-size: cover;
+               background-attachment: fixed;
+               box-sizing: border-box;
+               background-position: center center;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .login{
+            border: 1px solid gray;
+            width: 300px;
+            height: 550px;
+            text-align: center;
+            color: gold;
+            background: transparent;
+            backdrop-filter: blur(4px);
+        }
+        label{
+            position: relative;
+            right: 84px;
+        }
+        span{
+            color: red;
+        }
+        #span{
+            position: relative;
+            right: 56px;
+        }
+        #span1{
+            position: relative;
+            right: 58px;
+        }
+        #span2{
+            position: relative;
+            right: 37px;
+        }
+        #span3{
+            position: relative;
+            right: 56px;
+        }
+        #span4{
+            position: relative;
+            right: 47px;
+        }
+        #span5{
+            position: relative;
+            right: 47px;
+        }
+        #btn{
+            background-color: gold;
+            width: 210px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            color: red;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 600;
+        }
+        input{
+            border: none;
+            height: 30px;
+            width: 210px;
+            border-radius: 3px;
+            outline: none;
+        }
+        input:focus{
+            border: 2px solid gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="login"> 
+              <h1>SignUp</h1>
+              <form id="form" action="addData" method="POST" autocomplete="off">
+                {% csrf_token %}
+                <label style="position: relative;right: 68px;">Full Name:</label><br>
+                <input id="Fullname" type="text" placeholder="Enter Your Full Name" name='name'><br>
+                <span id="span"></span><br>
+                <label>DOB:</label><br>
+                <input id="dob" type="date" placeholder="Enter Your Date Of Birth" name="dob" ><br>
+                <span id="span1"></span><br>
+                <label style="position: relative;right: 54px;">Phone Number:</label><br>
+                <input id="phno" type="number" placeholder="Enter Your Phone Number" name="phno"><br>
+                <span id="span2"></span><br>
+                <label>Email:</label><br>
+                <input id="email" type="email" placeholder="Enter Your Email" name="email"><br>
+                <span id="span3"></span><br>
+                <label style="position: relative;right: 75px;">Password:</label><br>
+                <input id="pass" type="password" placeholder="Enter Your Password" name="password"><br>
+                <span id="span4"></span><br>
+                <label style="position: relative;right: 45px;">Confirm Password:</label><br>
+                <input id="conpass" type="password" placeholder="Re-enter the Password" name="conpass"><br>
+                <span id="span5"></span><br><br>
+                <button id="btn" onclick="check(event)">Submit</button>
+              </form>
+        </div>
+    </div>
+</body>
+<script>      
+
+    
+   
+  
+    check=(event)=>{
+        event.preventDefault();
+        console.log("sdfghj")
+        var form = document.getElementById("form")
+        var name = document.getElementById("Fullname").value
+        console.log(name,"name")
+        var dob = document.getElementById("dob").value
+        var phone = document.getElementById("phno").value
+        var email = document.getElementById("email").value
+        var pass = document.getElementById("pass").value
+        var conpass = document.getElementById("conpass").value
+       // const reg = /^(\d{10})$///
+        //const reg = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;//
+        const regphone = /^\d{10}$/
+        var regemail = /^([a-zA-Z0-9-_\.]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,10})(\.[a-zA-Z]{2,8})?$/
+        if(name == "" || dob == ""){
+            document.getElementById("span").innerHTML="Fill The Name"
+            document.getElementById("span1").innerHTML="Fill The DOB"
+         }
+
+
+
+        if(name!= ""){
+           document.getElementById("span").innerHTML=""
+        }
+        if(dob!= ""){
+            document.getElementById("span1").innerHTML=""
+        }
+
+
+
+        if(phone ==""){
+            document.getElementById("span2").innerHTML="Fill The Phone.No"
+        }else if(phone!= "" && phone.match(regphone)){
+         document.getElementById("span2").innerHTML=""
+        }else{
+         document.getElementById("span2").innerHTML="enter 10 digit number"
+        }
+
+
+
+        if(email== ""){
+            document.getElementById("span3").innerHTML="Fill The Email"
+        }else if(email!= "" && email.match(regemail)){
+            document.getElementById("span3").innerHTML=""
+        }else{
+            document.getElementById("span3").innerHTML="enter valid mail"
+        }
+
+        if(pass ==""){
+            document.getElementById("span4").innerHTML="Fill The Password"
+        }
+        else if(pass!= ""){
+            document.getElementById("span4").innerHTML=""
+        }
+
+
+
+
+        if(conpass ==""){
+            document.getElementById("span5").innerHTML="Fill The Password"
+        }
+        else if(conpass!= "" && conpass == pass){
+            document.getElementById("span5").innerHTML=""
+        }else{
+            document.getElementById("span5").innerHTML="password not match"
+        }
+
+       
+        if(name!= "" && dob!= "" && phone!= "" && phone.match(regphone) && email!= "" && email.match(regemail) && pass!= "" && conpass!= "" && conpass == pass){
+            form.action = "addData"; 
+            form.method = "POST";
+            window.open("addData", "_self")
+            form.submit()
+            document.getElementById("Fullname").value=""
+            document.getElementById("dob").value=""
+            document.getElementById("phno").value=""
+            document.getElementById("email").value=""
+            document.getElementById("pass").value=""
+           document.getElementById("conpass").value=""
+
+           
+
+        }
+
+    
+    }
+</script>
+</html>

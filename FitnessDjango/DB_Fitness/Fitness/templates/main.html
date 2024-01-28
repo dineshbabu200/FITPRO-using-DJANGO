@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITPRO</title>
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+
+
+
+.showcase {
+  width: 100%;
+  height: 506px;
+  min-height: 506px;
+  background-color: gold;
+  max-width: 100%;
+  min-width: 1018px;
+  padding: 14px;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+ /* background-image: url("{% static 'Fitness Wallpaper.jpg' %}");
+            background-repeat: no-repeat;
+               background-size: cover;
+               background-attachment: fixed;*/
+               box-sizing: border-box;
+               background-position: center center;
+               height: 1000px;
+}
+
+.header{
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  background-color:rgb(34, 32, 32);
+  border-bottom: 2px solid gold;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+.header button{
+  float: left;
+  margin: 4px;
+}
+.header #pro{
+  color: gold;
+  font-size: large;
+}
+.DropDown {
+  position: relative;
+  display: inline-block;
+  float: right;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+
+
+.DropDown-content {
+  display: none;
+  position: absolute;
+  right: 20px;
+  background-color: gold;
+  width: 100px;
+  font-size: medium;
+  border-radius: 10px;
+  
+}
+
+.DropDown-content a {
+  text-decoration: none;
+  color: rgb(17, 17, 17);
+  display: block;
+  padding: 10px;
+}
+
+.DropDown-content a:hover {
+  background-color: rgb(34, 32, 32);
+  color: gold;
+  border-radius: 10px;
+  border: 2px solid gold;
+}
+
+.DropDown:hover .DropDown-content {
+  display: block;
+}
+
+.navbar{
+  width: 100%;
+  min-width: 1014px;
+  max-width: 100%;
+  height: 40px;
+  background-color: violet;
+  margin-top: 50px;
+  padding: 0;
+}
+.navbar ul {
+  list-style-type: none;
+  background-color: rgb(34, 32, 32);
+  width: 100%;
+  min-width: 1014px;
+  max-width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.navbar li {
+  float: left;
+}
+.navbar li.DropDown1 {
+  position: relative;
+  display: inline-block;
+ min-width: 1024px;
+}
+
+.DropDown1-btn {
+  border: 2px solid gold;
+  border-radius: 5px;
+  padding: 0px;
+  cursor: pointer;
+  width: 124px;
+  background-color: rgb(34, 32, 32);
+  color: gold;
+
+}
+
+.DropDown1-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(34, 32, 32);
+  color: gold;
+  min-width: 120px;
+  border: 2px solid gold;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.DropDown1-content a {
+  text-decoration: none;
+  color: rgb(17, 17, 17);
+  display: block;
+  padding: 10px;
+}
+
+.DropDown1-content a:hover {
+  background-color: gold;
+}
+.DropDown1-content:hover a:hover{
+  color: red;
+}
+
+.DropDown1:hover .DropDown1-content {
+  display: block;
+}
+
+.DropDown1-btn:hover {
+  background-color: gold ;
+  color:red;
+}
+ .games {
+  display: flex;
+  gap: 0.6rem;
+  aspect-ratio: 5 / 2;
+}
+
+.game {
+  height: 480px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  flex: 1 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.game:hover {
+  flex: 20;
+}
+
+.game > h3 {
+  white-space: nowrap;
+  color: white;
+  margin: 1rem 0.8rem;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.game:hover > h3 {
+  opacity: 1;
+}
+
+.game > h3::before {
+  font-family: "Font Awesome 6 Free";
+  /* content: "\f11b"; */
+  display: inline-block;
+  border-radius: 50%;
+  border: 0.2rem solid #ffffffe6;
+  aspect-ratio: 1 / 1;
+  margin-right: 1rem;
+  padding: 0.35em 0.25em 0em 0.25em;
+  font-size: 1.1rem;
+  vertical-align: 0.1rem;
+}
+
+.game:nth-child(1) {
+  background-image: url("{% static 'BodyBuilding.jpg' %}");
+}
+
+.game:nth-child(2) {
+  background-image: url("{% static 'CrossFitness.jpg' %}");
+}
+
+.game:nth-child(3) {
+  background-image: url("{% static 'Weight-Loss.jpg' %}");
+}
+
+.game:nth-child(4) {
+  background-image: url("{% static 'Power.jpg' %}");
+}
+
+.game:nth-child(5) {
+  background-image: url("{% static 'Run.jpg' %}");
+} 
+
+  .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 230px;
+  background-color:rgb(25, 25, 25);
+  position: relative;
+  right: 6px;
+  height: 100%;
+  bottom: 10px;
+  overflow-y:hidden;
+  text-align: center;
+  
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  background-color:gold;
+  margin-bottom: 10px;
+  text-decoration: none;
+  height: 40px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.sidebar a:hover{
+  background-color: black;
+    cursor: pointer;
+    color: gold !important;
+    border: 2px solid gold !important;
+}
+
+
+.cont{
+  width: 100%;
+  max-width: 100%;
+  min-width: 1017px;
+  height: 529px;
+  background-color:rgb(34, 32, 32);
+  color: gold;
+  padding-top:70px ;
+}
+.col-50{
+  width: 50%;
+  float: left;
+  padding-left: 28px;
+  padding-top: 28px;
+  
+}
+.clo-50{
+   width: 50%;
+  float: right;
+}
+.clo-img{
+  display: grid;
+   grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+}
+.img{
+  padding: 20px 0;
+  border: 3px solid gold;
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  float: right;
+}
+
+#pro1{
+  width: 121px;
+  position: relative;
+  bottom: 18px;
+}
+#pro2{
+  width: 115px;
+    position: relative;
+    bottom: 20px;
+    left: 6px;
+}
+#pro3{
+  width: 102px;
+  position: relative;
+  bottom: 23px;
+  left: 11px;
+}
+#pro4{
+  width: 111px;
+  position: relative;
+  bottom: 26px;
+  right: 4px;
+}
+#pro5{
+  width: 112px;
+  position: relative;
+  bottom: 23px;
+}
+#pro6{
+  width: 87px;
+  position: relative;
+  bottom: 29px;
+  left: 19px;
+}
+#pro7{
+  width: 150px;
+  position: relative;
+  bottom: 19px;
+  right: 26px;
+}
+#pro8{
+  width: 76px;
+  position: relative;
+  bottom: 21px;
+  left: 23px;
+}
+#pro9{
+  width: 106px;
+  position: relative;
+  bottom: 15px;
+  right: 3px;
+}
+
+
+.support{
+  background-color: gold;
+  width: 100%;
+  height: auto;
+  min-width: 1017px;
+
+}
+.supportimg{
+  position: relative;
+}
+.supportimg img{
+  width: 100%;
+  padding: 8px;
+
+}
+.centered{
+  color: gold;
+  font-size: 60px;
+  font-family: 'Times New Roman', Times, serif;
+  position: absolute;
+  top: 10%;
+  left: 26%;
+}
+.centered p{
+  color: black;
+  font-size: 23px;
+  font-family: 'Times New Roman', Times, serif;
+  padding-left: 38px;
+  text-shadow: 2px 2px 4px gold;
+
+}
+/* #menubtn:focus{
+  border:2px solid black;
+} */
+/*.carousel-inner img{
+  width: 100%;
+  height: 100%;
+}*/
+#divcontainer{
+  display: flex;
+  justify-content: center;
+  padding-top:70px ;
+}
+#carouseldiv{
+  width:1100px;
+  height:450px;
+}
+.carousel-inner{
+  border-radius: 5px;
+  text-align: center;
+}
+.carousel-inner h1{
+  color: gold;
+}
+.modal-backdrop.show {
+  opacity: .5;
+  width: 100%;
+  height: 100%;
+}
+
+.container{
+  display: grid;
+  grid-template-rows: 60px 60px auto 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas: '.header' '.divcontainer';
+  height: 100vh;
+}
+.footer{
+  background-color:rgb(34, 32, 32);
+  width: 100%;
+  min-width: 1017px;
+  height: 560px;
+}
+.footerdiv{
+  background-color: rgb(34, 32, 32);
+  width: 90%;
+  height: 450px;
+  margin-left: 80px;
+
+}
+.footerdivtwo{
+  background-color: rgb(34, 32, 32);
+  width: 90%;
+  height: 110px;
+  margin-left: 80px;
+  display: flex;
+  align-items: center;
+  color: gold;
+}
+.footerdivtwo p:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.footerdivtwo .copyright:hover{
+  text-decoration: none;
+  cursor: text;
+}
+.left{
+  width: 35%;
+  height: 450px;
+  float: left;
+  color: gold;
+  padding: 40px;
+  border-bottom: 2px solid gold;
+}
+.right{
+  width: 65%;
+  color: gold;
+  height: 450px;
+  float: right;
+  display: flex;
+  padding-right: 10px;
+  padding-top: 9px;
+  border-bottom: 2px solid gold;
+
+}
+ul{
+  list-style-type: none;
+}
+li{
+  padding: 10px;
+}
+li:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.footericons{
+  display: flex;
+  float: right;
+}
+.footericons i{
+  padding: 14px;
+  color: gold;
+}
+.footericons i:hover{
+  cursor: pointer;
+  color: lightgoldenrodyellow;
+
+}
+{% comment %} @maedia  (min-width: 480px){
+  .container{
+    grid-template-rows:60px auto 60px ;
+    grid-template-columns: 160px auto;
+    grid-template-areas: '.header .header .header'
+     '.divcontainer';
+  }
+} {% endcomment %}
+{% comment %} @media (min-width:375px) and (max-width:1241px) {
+  .cont{
+    width:max-content;
+  }
+  
+} {% endcomment %}
+    </style>
+</head>
+<body>
+  <div class="header">
+     <button id="menubtn" style="background-color: gold;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fa-solid fa-bars" style="color: black;"></i></button>
+    <h1 style="color: gold;">FITPRO
+            <div class="DropDown">
+                <i id="pro" class="fa-regular fa-user"></i>
+                <div class="DropDown-content">
+                    <a href="{% url 'login' %}">LOG OUT</a>
+                </div>
+            </div> </h1>
+  </div>
+<div style="background-color: rgb(25, 25, 25);width: 250px;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header" style="border-bottom: 2px solid gold;">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel" style="color: gold;">FITPRO</h5>
+    <button style="border: none;background: none;" type="button"  data-bs-dismiss="offcanvas" aria-label="Close"><i style="color: gold;" class="fa-solid fa-square-xmark"></i></button>
+    </div>
+  <div class="offcanvas-body" >
+    <div class="sidebar">
+    <a onclick="bmi()">Calculate BMI</a>
+    <a onclick="maintance()">Track Your MC</a>
+    <a onclick="intakepg()">Your Protein Intake</a>
+    </div>
+  </div>
+</div>
+<div class="navbar">
+  <ul>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">WORKOUTS</button>
+            <div class="DropDown1-content">
+                <a >Workout Videos</a>
+                <a>Custom Workouts</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">PROGRAMS</button>
+            <div class="DropDown1-content">
+                <a >Workout Programs</a>
+                <a>Meal Plans</a>
+                <a>Pilot Programs</a>
+                <a>Routines</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">HEALTHY LIVING</button>
+            <div class="DropDown1-content">
+                <a >Expert Articles</a>
+                <a >Healthy Recipes</a>
+                <a>Wellness Videos</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">COMMUNITY</button>
+            <div class="DropDown1-content">
+                <a >Community</a>
+                <a >Blog</a>
+                <a>What's New</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">ABOUT</button>
+            <div class="DropDown1-content">
+                <a >About</a>
+                <a >Careers</a>
+                <a>Tutorials</a>
+                <a>Our Team</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">STORE</button>
+            {% comment %} <div class="DropDown1-content">
+                <a >About</a>
+                <a >Careers</a>
+                <a>Tutorials</a>
+                <a>Our Team</a>
+            </div> {% endcomment %}
+        </div>
+    </li>
+    <li>
+        <div class="DropDown1">
+            <button class="DropDown1-btn">MEMBERSHIP</button>
+            {% comment %} <div class="DropDown1-content">
+                <a >About</a>
+                <a >Careers</a>
+                <a>Tutorials</a>
+                <a>Our Team</a>
+            </div> {% endcomment %}
+        </div>
+    </li>
+</ul>
+</div>
+<div class="cont">
+  <div class="col-50">
+    <h1>Feel Great</h1>
+    <h1>Body and Mind</h1>
+    <h3>Choose from hundreds of workouts, healthy<br> recipes, relaxing meditations, and expert<br> articles, for a whole body and mind<br> approach to feeling great.</h3>
+    <button style="background-color: gold;border: none ;border-radius: 6px;font-weight: 700;width: 95px;height: 44px;">JOIN NOW</button>
+  </div>
+  <div class="clo-50">
+    <div class="clo-img">
+      <div class="img"><img id="pro1" src="{% static "propic1.png" %}"></div>
+      <div class="img"><img id="pro2" src="{% static "propic2.png" %}"></div>
+      <div class="img"><img id="pro3" src="{% static "propic3.png" %}"></div>
+      <div class="img"><img id="pro4" src="{% static "propic4.png" %}"></div>
+      <div class="img"><img id="pro5" src="{% static "propic5.png" %}"></div>
+      <div class="img"><img id="pro6" src="{% static "propic6.png" %}"></div>
+      <div class="img"><img id="pro7" src="{% static "propic7.png" %}"></div>
+      <div class="img"><img id="pro8" src="{% static "propic8.png" %}"></div>
+      <div class="img"><img id="pro9" src="{% static "propic9.png" %}"></div>
+    </div>
+  </div>
+</div>
+<div class="showcase">
+  <div class="games">
+    <div class="game">
+      <h3>BodyBuilding</h3>
+    </div>
+    <div class="game">
+      <h3>Cross-Fit</h3>
+    </div>
+    <div class="game">
+      <h3>Weight-Loss</h3>
+    </div>
+    <div class="game">
+      <h3>Power-Lifting</h3>
+    </div>
+    <div class="game">
+      <h3>Atheletic-Fitness</h3>
+    </div>
+  </div>
+</div>
+<div class="support">
+<div class="supportimg">
+  <img src="{% static "supportimg.jpg" %}">
+  <div class="centered">Supportive Community<br/>
+    <p>Stay motivated and engaged with a little help from a<br> supportive community of other members.</p></div>
+</div>
+</div>
+
+<div class="footer">
+  <div class="footerdiv">
+    <div class="left">
+      <h1>FITPRO</h1>
+      <p>WORKOUT COMPLETE</p>
+    </div>
+    <div class="right">
+      <ul>
+        <li><b>WORKOUTS</b></li>
+        <li>WORKOUT VIDEOS</li>
+        <li>CUSTOM WORKOUT</li>
+        <li><b>PROGRAMS</b></li>
+        <li>WORKOUT PROGRAMS</li>
+        <li>MEAL PLANS</li>
+        <li>PILOT PROGRAMS</li>
+        <li>ROUTINES</li>
+      </ul>
+      <ul>
+        <li><b>HEALTHY LIVING</b></li>
+        <li>FITNESS</li>
+        <li>HEALTH</li>
+        <li>NUTRITION</li>
+        <li>HEALTHY RECIPES</li>
+        <li>EXPERTS</li>
+      </ul>
+      <ul>
+        <li><b>ABOUT</b></li>
+        <li>CAREERS</li>
+        <li>TUTORIALS</li>
+        <li>OUR TEAM</li>
+        <li>B2B OPTIONS</li>
+      </ul>
+      <ul>
+        <li><b>MEMBERSHIP</b></li>
+        <li> FB PLUS</li>
+        <li> COMMUNITY</li>
+        <li> BLOG</li>
+        <li> CONTACT US</li>
+        <li> FAQ</li>
+        <li>STORE</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerdivtwo">
+    <div style="width: 70%;display: flex;">
+      <p class="copyright">Copyright © 2024 Fitness Blender. All rights reserved.</p>
+      <p style="padding-left: 15px;"> Terms of Use </p>
+      <p style="padding-left: 15px;"> Privacy Policy</p>
+    </div>
+    <div style="width: 30%; padding: 10px; display: flex;">
+      <div class="footericons"><i class="fa-brands fa-youtube"></i><i class="fa-brands fa-pinterest"></i><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-instagram"></i><i class="fa-brands fa-twitter"></i></div>
+    </div>
+
+   </div>
+</div>
+
+{% comment %} <div id="divcontainer">
+<div id="carouseldiv" class="carousel slide" data-ride="carousel">
+  <!-- the SlideShow -->
+   <div class="carousel-inner">
+      <div class="carousel-item active" data-interval="800">
+          <img src="{% static 'vonmoger.png' %}" width="1100" height="450">
+          <h1>BodyBuilding</h1>
+      </div>
+      <div class="carousel-item" data-interval="800">
+          <img src="{% static 'Run.jpg' %}" width="1100" height="450">
+          <h1>Running</h1>
+      </div>
+      <div class="carousel-item"data-interval="800"   >
+          <img src="{% static 'Power.jpg' %}" width="1100" height="450">
+          <h1>Power-Lifting</h1>
+      </div>
+      <div class="carousel-item"data-interval="800"   >
+          <img src="{% static 'Weight-Loss.jpg' %}" width="1100" height="450">
+          <h1>Weight-Loss</h1>
+      </div>
+      <div class="carousel-item"data-interval="800"   >
+          <img src="{% static 'CrossFitness.jpg' %}" width="1100" height="450">
+          <h1>Cross-Fit</h1>
+      </div>
+      <div class="carousel-item"data-interval="800"   >
+          <img src="{% static 'weightlifting.jpg' %}" width="1100" height="450">
+          <h1>Power-Lifting</h1>
+      </div>
+   </div>
+
+
+
+   <!-- Left And Right Controls -->
+
+   <a class="carousel-control-prev" href="#carouseldiv" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+   </a>
+   <a class="carousel-control-next" href="#carouseldiv" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+   </a>
+</div> 
+</div> {% endcomment %}
+
+      </div>
+</body>
+<script>
+  intakepg =()=>{
+    window.open("proteintake","_self")
+  }
+  maintance =()=>{
+    window.open("maintance","_self")
+  }
+  bmi =()=>{
+    window.open("bmi","_self")
+  }
+</script>
+</html>

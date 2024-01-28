@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Fitness</title>
+    {% load static %}
+<style>
+body {
+background-image: url("{% static 'Fitness Wallpaper.jpg' %}");
+                      background-repeat: no-repeat;
+                         background-size: cover;
+                         background-attachment: fixed;
+                         box-sizing: border-box;
+                         background-position: center center;
+}
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .login{
+            border: 1px solid gray;
+            width: 300px;
+            height: 330px;
+            text-align: center;
+            color: gold;
+            background: transparent;
+            backdrop-filter: blur(4px);
+        }
+        label{
+            position: relative;
+            right: 84px;
+        }
+            span{
+                color: red;
+            }
+            #span{
+                position: relative;
+                right: 59px;
+            }
+            #span1{
+                position: relative;
+                right: 50px;
+            }
+        button{
+            background-color: gold;
+            width: 210px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            color: red;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 600;
+        }
+        input{
+            border: none;
+            height: 30px;
+            width: 210px;
+            border-radius: 3px;
+            outline: none;
+        }
+        input:focus{
+            border: 2px solid gold;
+        }
+        a{
+            text-decoration: none;
+            color: silver;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="login"> 
+              <h1>LOGIN</h1>
+              <form>
+                {% csrf_token %}
+                <label>Email:</label><br>
+                <input id="email" type="email" placeholder="Enter Your Email" required><br>
+                <span id="span"></span><br><br>
+                <label style="position: relative;right: 75px;">Password:</label><br>
+                <input id="password" type="password" placeholder="Enter Your Password" required><br>
+                <span id="span1"></span><br><br>
+                <button id="button" type="submit">SUBMIT</button><br>
+                <p>Are You New! <a href="/signup">Create New Account</a></p>
+
+              </form>
+        </div>
+        
+    </div>
+</body>
+<script>
+    document.getElementById("button").addEventListener("click",function(event){
+        event.preventDefault()
+      
+        check()
+       })
+     
+       check=()=>{
+           console.log("sdfghj")
+           var email = document.getElementById("email").value
+           var password = document.getElementById("password").value
+           var regemail = /^([a-zA-Z0-9-_\.]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,10})(\.[a-zA-Z]{2,8})?$/
+
+           fetch('/api/get-data/')
+           .then(response => response.json())
+           .then(data => {
+            console.log(data,"data")
+                  if(data ==""){
+                   document.getElementById("span").innerHTML="Email Doesn't Exist"
+                   document.getElementById("span1").innerHTML="Invalid Password"
+                  }
+                  if(email == "" && password==""){
+                    document.getElementById("span").innerHTML="Fill The Email"
+                    document.getElementById("span1").innerHTML="Fill The Password"
+                  }
+                  if(email!= "" && email != regemail){
+                    document.getElementById("span").innerHTML="Invalid Email"
+                    data.map(i=>{
+                        if(email != i.Email && email.match(regemail)){
+                            document.getElementById("span").innerHTML="Email doesn't exist "
+                        }
+                        else{
+                            document.getElementById("span").innerHTML="Invalid Email"
+                        }
+                    })
+                  }
+                  else if(email == ""){
+                    document.getElementById("span").innerHTML="Fill The Email"
+                  }
+                  else{
+                   // document.getElementById("span").innerHTML="Fill the Email"//
+                    document.getElementById("span").innerHTML=""
+
+                  }
+
+                  if(password != ""){
+                    console.log("2")
+                    document.getElementById("span1").innerHTML="Pasword Invalid"
+                    data.map(i=>{
+                    if(password == i.Password){
+                        document.getElementById("span1").innerHTML=""
+                    }
+                    else{
+                        document.getElementById("span1").innerHTML="Pasword Invalid"
+                    }
+                    })
+                 }
+            
+               console.log(data);
+           })
+           .catch(error => console.error('Error:', error));
+            
+           
+
+          
+              
+
+          if(email!= "" || email.match(regemail) || password!=""){
+              fetch('/api/get-data/')
+              .then(response => response.json())
+               .then(data => {
+
+                   data.map(item=>{
+                    console.log(item.Email)
+                    console.log(email)  
+                    /*if(email != item.Email && email != ""){
+                      document.getElementById("span").innerHTML="Email doesn't Exist 1"
+                    }*/
+                    if(email == item.Email ){
+                        console.log(email)
+                        console.log(item.Email)
+                        document.getElementById("span").innerHTML=""
+                    }
+
+                    if(email == item.Email && password == item.Password ){
+                        console.log("1")
+                        document.getElementById("span1").innerHTML=""
+                   
+                        setInterval(function() {
+                            alert("Login Successful")
+                            window.open("main/", "_self");
+                            document.getElementById("email").value=""
+                            document.getElementById("password").value=""
+                            document.getElementById("span").innerHTML=""
+                            document.getElementById("span1").innerHTML=""
+                        }, 3000);
+                     }
+
+                     
+                     if(email =="" ){
+                        console.log("3")
+                        document.getElementById("span").innerHTML="Fill The Email"
+                     }
+                     if(password == ""){
+                        console.log("4")
+                        document.getElementById("span1").innerHTML="Fill The Password"
+                     }
+                  console.log(item.Name)
+                 })
+               })
+              .catch(error => console.error('Error:', error));
+          }
+}
+          
+        </script>
+        </html>
